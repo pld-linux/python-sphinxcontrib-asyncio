@@ -1,13 +1,14 @@
 #
 # Conditional build:
 %bcond_without	doc	# Sphinx documentation
-%bcond_with	tests	# unit tests (not included in release tarball)
+%bcond_with	tests	# unit tests (not included in sdist)
 %bcond_without	python2 # CPython 2.x module
-%bcond_without	python3 # CPython 3.x module
+%bcond_with	python3 # CPython 3.x module (built from python3-sphinxcontrib-asyncio.spec)
 
 Summary:	Sphinx extension to support coroutines in markup
 Summary(pl.UTF-8):	Rozszerzenie Sphinksa do obsługi korutyn w znacznikach
 Name:		python-sphinxcontrib-asyncio
+# keep 0.2.x here for python2/sphinx 1.x support
 Version:	0.2.0
 Release:	4
 License:	Apache v2
@@ -20,6 +21,7 @@ URL:		https://pypi.org/project/sphinxcontrib-asyncio/
 BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools
 %if %{with tests}
+BuildRequires:	python-Sphinx
 BuildRequires:	python-pytest
 %endif
 %endif
@@ -27,6 +29,7 @@ BuildRequires:	python-pytest
 BuildRequires:	python3-modules >= 1:3.3
 BuildRequires:	python3-setuptools
 %if %{with tests}
+BuildRequires:	python3-Sphinx
 BuildRequires:	python3-pytest
 %endif
 %endif
@@ -78,6 +81,7 @@ Dokumentacja API modułu Pythona sphinxcontrib-asyncio.
 %py_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python} -m pytest tests
 %endif
 %endif
@@ -86,6 +90,7 @@ Dokumentacja API modułu Pythona sphinxcontrib-asyncio.
 %py3_build
 
 %if %{with tests}
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 %{__python3} -m pytest tests
 %endif
 %endif
