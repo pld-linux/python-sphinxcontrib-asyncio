@@ -36,7 +36,7 @@ BuildRequires:	python3-pytest
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 %if %{with doc}
-BuildRequires:	sphinx-pdg
+BuildRequires:	sphinx-pdg-2
 %endif
 Requires:	python-modules >= 1:2.7
 Requires:	python-sphinxcontrib
@@ -97,7 +97,8 @@ PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 \
 
 %if %{with doc}
 PYTHONPATH=$(pwd) \
-%{__make} -C docs html
+%{__make} -C docs html \
+	SPHINXBUILD=sphinx-build-2
 %endif
 
 %install
