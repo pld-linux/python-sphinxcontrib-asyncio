@@ -10,7 +10,7 @@ Summary(pl.UTF-8):	Rozszerzenie Sphinksa do obsługi korutyn w znacznikach
 Name:		python-sphinxcontrib-asyncio
 # keep 0.2.x here for python2/sphinx 1.x support
 Version:	0.2.0
-Release:	4
+Release:	5
 License:	Apache v2
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/sphinxcontrib-asyncio/
